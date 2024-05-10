@@ -8,8 +8,10 @@ To run the app on a k3s cluster, follow these steps:
 
 1. Make sure you have k3s installed on your server. If not, you can [install k3s](https://k3s.io/) using the provided documentation.
 
-2. Clone [this](https://github.com/NosarevAndrey/k3sFlaskMessenger.git) repository on your server:
-
+2. Clone this repository on your server:
+```
+git clone https://github.com/NosarevAndrey/k3sFlaskMessenger.git
+```
 3. Navigate to the cloned directory:
 
 4. Run the launch script with the `-r` or `--run` option to deploy the app:
