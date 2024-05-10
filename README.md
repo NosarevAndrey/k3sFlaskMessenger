@@ -1,36 +1,29 @@
-# Flask/PostgreSQL Simple Messenger App
+# Flask Messenger App with PostgreSQL Database on k3s
 
-This is a simple messenger app built using Flask for the backend and PostgreSQL for the database.
+This is a simple messenger app built using Flask for the backend and PostgreSQL for the database. The app is deployed using k3s.
 
 ## Running the App
 
-To run the app locally, follow these steps:
+To run the app on a k3s cluster, follow these steps:
 
-1. Make sure you have Docker installed on your system.
+1. Make sure you have k3s installed on your server. If not, you can [install k3s](https://k3s.io/) using the provided documentation.
 
-2. Clone this repository:
+2. Clone [this](https://github.com/NosarevAndrey/k3sFlaskMessenger.git) repository on your server:
+
+3. Navigate to the cloned directory:
+
+4. Run the launch script with the `-r` or `--run` option to deploy the app:
 ```
-git clone https://github.com/NosarevAndrey/DockerFlaskMessenger
+./launch.sh -r
 ```
-3. Start the services using Docker Compose:
+This script will deploy the app on the k3s cluster.
+
+5. Once the services are deployed, you can access the web app at:
+<b>http://\<k3s-provided-host\>:30101/</b>
+
+5. To delete a deployments you can use the same launch.sh script with `-d` or `--delete` option
 ```
-docker-compose up -d --build
+./launch.sh -d
 ```
-4. Once the services are up and running, you can access the web app at [http://localhost:3000/](http://localhost:3000/).
 
-## Accessing pgAdmin
-
-pgAdmin is used to manage the PostgreSQL database. You can access it at [http://localhost:8080/](http://localhost:8080/).
-
-Default credentials for pgAdmin:
-- Email: admin@example.com
-- Password: admin
-
-## Database Connection
-
-To connect to the database in pgAdmin, use the following credentials:
-- Host: db
-- Port: 5432
-- Username: admin
-- Password: admin
 
