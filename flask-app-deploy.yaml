@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-app-deploy
+  labels:
+    app: web-application
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-application
+  template:
+    metadata:
+      labels:
+        app: web-application
+        service: web-application-service
+    spec:
+      terminationGracePeriodSeconds: 0
+      containers:
+        - name: web-application
+          image: nosarevandrey/flask-web-application:latest
+          ports:
+            - containerPort: 8080
+          env:
+          - name: USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secret
+                key: username
+          - name: PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secret
+                key: password
+          - name: HOST
+            valueFrom:
+              configMapKeyRef:
+                name: app-config
+                key: postgres-url
+          - name: DBNAME
+            valueFrom:
+              configMapKeyRef:
+                name: app-config
+                key: postgres_db
